@@ -194,5 +194,16 @@ namespace RecalleLeSousTitre
         {
             _controler.SecondsError = int.Parse(UpDownSecondsError.Value.ToString());
         }
+
+        /// <summary>
+        /// Go to the last subtitle
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
+        private void GoToLast_Click(object sender, EventArgs e)
+        {
+            Tuple<SubtitleLine, SubtitleLine, SubtitleLine> lignes = _controler.GetLast();
+            AfficheLignes(lignes);
+        }
     }
 }

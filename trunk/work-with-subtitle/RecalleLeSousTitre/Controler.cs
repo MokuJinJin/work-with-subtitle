@@ -103,6 +103,16 @@ namespace RecalleLeSousTitre
         }
 
         /// <summary>
+        /// Return to the last subtitle's line
+        /// </summary>
+        /// <returns>Tuple : Item1 is before, Item2 is current, Item3 is after</returns>
+        public Tuple<SubtitleLine, SubtitleLine, SubtitleLine> GetLast()
+        {
+            _index = _subTitles.Count;
+            return GetActual();
+        }
+
+        /// <summary>
         /// Get the Subtitle next to the current.
         /// Current is becoming "before"
         /// </summary>

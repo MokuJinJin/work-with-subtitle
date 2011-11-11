@@ -20,8 +20,8 @@ namespace RecalleLeSousTitre
         {
             Text = new List<string>();
             Numero = 0;
-            StartTime = TimeSpan.MinValue;
-            EndTime = TimeSpan.MinValue;
+            StartTime = TimeSpan.Zero;
+            EndTime = TimeSpan.Zero;
         }
 
         /// <summary>

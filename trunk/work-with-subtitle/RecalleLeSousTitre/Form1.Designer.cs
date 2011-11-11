@@ -71,6 +71,8 @@
             this.UpDownSecondsError = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.UpDownSecondsError)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,9 +109,9 @@
             // 
             // btnFirstError
             // 
-            this.btnFirstError.Location = new System.Drawing.Point(391, 283);
+            this.btnFirstError.Location = new System.Drawing.Point(391, 269);
             this.btnFirstError.Name = "btnFirstError";
-            this.btnFirstError.Size = new System.Drawing.Size(99, 23);
+            this.btnFirstError.Size = new System.Drawing.Size(75, 37);
             this.btnFirstError.TabIndex = 3;
             this.btnFirstError.Text = "Go to 1st Error";
             this.btnFirstError.UseVisualStyleBackColor = true;
@@ -344,7 +346,7 @@
             // btnNext
             // 
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext.Location = new System.Drawing.Point(496, 240);
+            this.btnNext.Location = new System.Drawing.Point(553, 240);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(75, 23);
             this.btnNext.TabIndex = 9;
@@ -355,7 +357,7 @@
             // btnRewind
             // 
             this.btnRewind.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRewind.Location = new System.Drawing.Point(310, 240);
+            this.btnRewind.Location = new System.Drawing.Point(229, 240);
             this.btnRewind.Name = "btnRewind";
             this.btnRewind.Size = new System.Drawing.Size(75, 23);
             this.btnRewind.TabIndex = 9;
@@ -389,9 +391,9 @@
             // 
             // btnFoundErrors
             // 
-            this.btnFoundErrors.Location = new System.Drawing.Point(200, 283);
+            this.btnFoundErrors.Location = new System.Drawing.Point(229, 269);
             this.btnFoundErrors.Name = "btnFoundErrors";
-            this.btnFoundErrors.Size = new System.Drawing.Size(104, 23);
+            this.btnFoundErrors.Size = new System.Drawing.Size(75, 37);
             this.btnFoundErrors.TabIndex = 11;
             this.btnFoundErrors.Text = "btnFoundErrors";
             this.btnFoundErrors.UseVisualStyleBackColor = true;
@@ -400,7 +402,7 @@
             // btnNextError
             // 
             this.btnNextError.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNextError.Location = new System.Drawing.Point(496, 283);
+            this.btnNextError.Location = new System.Drawing.Point(472, 269);
             this.btnNextError.Name = "btnNextError";
             this.btnNextError.Size = new System.Drawing.Size(75, 23);
             this.btnNextError.TabIndex = 9;
@@ -411,7 +413,7 @@
             // btnRewindError
             // 
             this.btnRewindError.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRewindError.Location = new System.Drawing.Point(310, 283);
+            this.btnRewindError.Location = new System.Drawing.Point(310, 269);
             this.btnRewindError.Name = "btnRewindError";
             this.btnRewindError.Size = new System.Drawing.Size(75, 23);
             this.btnRewindError.TabIndex = 9;
@@ -421,9 +423,9 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(391, 240);
+            this.button6.Location = new System.Drawing.Point(310, 240);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(99, 23);
+            this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 3;
             this.button6.Text = "Go to 1st";
             this.button6.UseVisualStyleBackColor = true;
@@ -470,6 +472,27 @@
             this.label2.TabIndex = 13;
             this.label2.Text = "secondes";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(391, 240);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Go to Last";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.GoToLast_Click);
+            // 
+            // button4
+            // 
+            this.button4.Enabled = false;
+            this.button4.Location = new System.Drawing.Point(472, 240);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "Go to ...";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.GoToFirst_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -511,6 +534,8 @@
             this.Controls.Add(this.lblTempsDebut);
             this.Controls.Add(this.lblNumeroLigne);
             this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.btnFirstError);
             this.Controls.Add(this.button2);
@@ -569,6 +594,8 @@
         private System.Windows.Forms.NumericUpDown UpDownSecondsError;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 
