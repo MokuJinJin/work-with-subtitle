@@ -57,7 +57,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="LigneSousTitre.cs" />
+    <Compile Include="SubtitleLine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="Form1.resx">

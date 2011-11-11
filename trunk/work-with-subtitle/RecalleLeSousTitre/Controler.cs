@@ -18,7 +18,7 @@ namespace RecalleLeSousTitre
         /// <summary>
         /// List of every subtitle from a file
         /// </summary>
-        private List<LigneSousTitre> _subTitles = new List<LigneSousTitre>();
+        private List<SubtitleLine> _subTitles = new List<SubtitleLine>();
 
         /// <summary>
         /// Index of the current subtitle's position 
@@ -58,36 +58,36 @@ namespace RecalleLeSousTitre
         /// Get the current Subtitle and the sub before (-1) and after (+1)
         /// </summary>
         /// <returns>Tuple : Item1 is before, Item2 is current, Item3 is after</returns>
-        public Tuple<LigneSousTitre, LigneSousTitre, LigneSousTitre> GetActual()
+        public Tuple<SubtitleLine, SubtitleLine, SubtitleLine> GetActual()
         {
             try
             {
-                LigneSousTitre l1 = _subTitles.Single(l => l.numero == _index);
-                LigneSousTitre before;
+                SubtitleLine l1 = _subTitles.Single(l => l.Numero == _index);
+                SubtitleLine before;
                 if (_index == 1)
                 {
-                    before = new LigneSousTitre();
+                    before = new SubtitleLine();
                 }
                 else
                 {
-                    before = _subTitles.Single(l => l.numero == _index - 1);
+                    before = _subTitles.Single(l => l.Numero == _index - 1);
                 }
 
-                LigneSousTitre after;
+                SubtitleLine after;
                 if (_index == _subTitles.Count)
                 {
-                    after = new LigneSousTitre();
+                    after = new SubtitleLine();
                 }
                 else
                 {
-                    after = _subTitles.Single(l => l.numero == _index + 1);
+                    after = _subTitles.Single(l => l.Numero == _index + 1);
                 }
 
-                return new Tuple<LigneSousTitre, LigneSousTitre, LigneSousTitre>(before, l1, after);
+                return new Tuple<SubtitleLine, SubtitleLine, SubtitleLine>(before, l1, after);
             }
             catch (Exception)
             {
-                return new Tuple<LigneSousTitre, LigneSousTitre, LigneSousTitre>(new LigneSousTitre(), new LigneSousTitre(), new LigneSousTitre());
+                return new Tuple<SubtitleLine, SubtitleLine, SubtitleLine>(new SubtitleLine(), new SubtitleLine(), new SubtitleLine());
             }
         }
 
@@ -96,7 +96,7 @@ namespace RecalleLeSousTitre
         /// Return to the first subtitle's line
         /// </summary>
         /// <returns>Tuple : Item1 is before, Item2 is current, Item3 is after</returns>
-        public Tuple<LigneSousTitre, LigneSousTitre, LigneSousTitre> GetFirst()
+        public Tuple<SubtitleLine, SubtitleLine, SubtitleLine> GetFirst()
         {
             _index = 1;
             return GetActual();
@@ -107,7 +107,7 @@ namespace RecalleLeSousTitre
         /// Current is becoming "before"
         /// </summary>
         /// <returns>Tuple : Item1 is before, Item2 is current, Item3 is after</returns>
-        public Tuple<LigneSousTitre, LigneSousTitre, LigneSousTitre> GetNext()
+        public Tuple<SubtitleLine, SubtitleLine, SubtitleLine> GetNext()
         {
             return GetNext(1);
         }
@@ -117,7 +117,7 @@ namespace RecalleLeSousTitre
         /// </summary>
         /// <param name="pas">how many next to the current subtitle</param>
         /// <returns>Tuple : Item1 is before, Item2 is current, Item3 is after</returns>
-        public Tuple<LigneSousTitre, LigneSousTitre, LigneSousTitre> GetNext(int pas)
+        public Tuple<SubtitleLine, SubtitleLine, SubtitleLine> GetNext(int pas)
         {
             if (_index < _subTitles.Count - pas)
             {
@@ -132,7 +132,7 @@ namespace RecalleLeSousTitre
         /// Current is becoming "after"
         /// </summary>
         /// <returns>Tuple : Item1 is before, Item2 is current, Item3 is after</returns>
-        public Tuple<LigneSousTitre, LigneSousTitre, LigneSousTitre> GetRewind()
+        public Tuple<SubtitleLine, SubtitleLine, SubtitleLine> GetRewind()
         {
             return GetRewind(1);
         }
@@ -142,7 +142,7 @@ namespace RecalleLeSousTitre
         /// </summary>
         /// <param name="pas">how many before to the current subtitle</param>
         /// <returns>Tuple : Item1 is before, Item2 is current, Item3 is after</returns>
-        public Tuple<LigneSousTitre, LigneSousTitre, LigneSousTitre> GetRewind(int pas)
+        public Tuple<SubtitleLine, SubtitleLine, SubtitleLine> GetRewind(int pas)
         {
             if (_index > pas)
             {
@@ -158,7 +158,7 @@ namespace RecalleLeSousTitre
         /// Set the first error as current subtitle, and return it
         /// </summary>
         /// <returns>Tuple : Item1 is before, Item2 is current, Item3 is after</returns>
-        public Tuple<LigneSousTitre, LigneSousTitre, LigneSousTitre> GetFirstError()
+        public Tuple<SubtitleLine, SubtitleLine, SubtitleLine> GetFirstError()
         {
             _errorIndex = 1;
             return GetNextError();
@@ -168,11 +168,11 @@ namespace RecalleLeSousTitre
         /// Set the current subtitle as the error next to the current/last one
         /// </summary>
         /// <returns>Tuple : Item1 is before, Item2 is current, Item3 is after</returns>
-        public Tuple<LigneSousTitre, LigneSousTitre, LigneSousTitre> GetNextError()
+        public Tuple<SubtitleLine, SubtitleLine, SubtitleLine> GetNextError()
         {
             for (int i = _errorIndex + 1; i <= _subTitles.Count; i++)
             {
-                if (Utils.DiffDebutFin(_subTitles.Single(l => l.numero == i), _secondsError))
+                if (Utils.IsErrorBetweenStartAndEndTime(_subTitles.Single(l => l.Numero == i), _secondsError))
                 {
                     _index = i;
                     _errorIndex = i;
@@ -187,11 +187,11 @@ namespace RecalleLeSousTitre
         /// Set the current subtitle as the error before to the current/last one
         /// </summary>
         /// <returns>Tuple : Item1 is before, Item2 is current, Item3 is after</returns>
-        public Tuple<LigneSousTitre, LigneSousTitre, LigneSousTitre> GetRewindError()
+        public Tuple<SubtitleLine, SubtitleLine, SubtitleLine> GetRewindError()
         {
             for (int i = _errorIndex - 1; i > 0; i--)
             {
-                if (Utils.DiffDebutFin(_subTitles.Single(l => l.numero == i), _secondsError))
+                if (Utils.IsErrorBetweenStartAndEndTime(_subTitles.Single(l => l.Numero == i), _secondsError))
                 {
                     _index = i;
                     _errorIndex = i;
@@ -209,9 +209,9 @@ namespace RecalleLeSousTitre
         public int FoundErrors()
         {
             int i = 0;
-            foreach (LigneSousTitre ligne in _subTitles)
+            foreach (SubtitleLine ligne in _subTitles)
             {
-                if (Utils.DiffDebutFin(ligne, _secondsError))
+                if (Utils.IsErrorBetweenStartAndEndTime(ligne, _secondsError))
                 {
                     i++;
                 }
@@ -235,17 +235,17 @@ namespace RecalleLeSousTitre
                 int numLigne = 0;
                 if (int.TryParse(lignes[i], out numLigne))
                 {
-                    LigneSousTitre l = new LigneSousTitre();
-                    l.numero = numLigne;
+                    SubtitleLine l = new SubtitleLine();
+                    l.Numero = numLigne;
                     i++;
                     string ligne = lignes[i].Replace(" ", string.Empty);
                     string[] temps = ligne.Split(new char[3] { '-', '-', '>' }, StringSplitOptions.RemoveEmptyEntries);
-                    l.TempsDebut = TimeSpan.Parse(temps[0]);
-                    l.TempsFin = TimeSpan.Parse(temps[1]);
+                    l.StartTime = TimeSpan.Parse(temps[0]);
+                    l.EndTime = TimeSpan.Parse(temps[1]);
                     i++;
                     while (!int.TryParse(lignes[i], out numLigne))
                     {
-                        l.soustitre.Add(lignes[i]);
+                        l.Text.Add(lignes[i]);
                         i++;
                         if (i == lignes.Length)
                         {
@@ -265,9 +265,9 @@ namespace RecalleLeSousTitre
         /// <param name="filePath">paht to the writed file</param>
         public void SaveFile(string filePath)
         {
-            foreach (LigneSousTitre l in _subTitles)
+            foreach (SubtitleLine l in _subTitles)
             {
-                File.AppendAllLines(filePath, l.ecrire());
+                File.AppendAllLines(filePath, l.GetAllLinesToWrite());
             }
         }
         #endregion

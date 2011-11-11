@@ -1,17 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="Program.cs" company="Zed Byt Corp">
+//     Copyright Zed Byt Corp 2010
+// </copyright>
+//-----------------------------------------------------------------------
 namespace RecalleLeSousTitre
 {
-    static class Program
+    using System;
+    using System.Windows.Forms;
+    
+    /// <summary>
+    /// Main Entry
+    /// </summary>
+    public static class Program
     {
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
