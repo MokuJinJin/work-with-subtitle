@@ -82,7 +82,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "parcourir ...";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Browse_Click);
             // 
             // openFileDialog1
             // 
@@ -113,7 +113,7 @@
             this.btnFirstError.TabIndex = 3;
             this.btnFirstError.Text = "Go to 1st Error";
             this.btnFirstError.UseVisualStyleBackColor = true;
-            this.btnFirstError.Click += new System.EventHandler(this.btnFirstError_Click);
+            this.btnFirstError.Click += new System.EventHandler(this.BtnFirstError_Click);
             // 
             // btnSave
             // 
@@ -123,7 +123,7 @@
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "SaveFile";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.save_Click);
+            this.btnSave.Click += new System.EventHandler(this.Save_Click);
             // 
             // lblNumeroLigne
             // 
@@ -350,7 +350,7 @@
             this.btnNext.TabIndex = 9;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 
             // btnRewind
             // 
@@ -361,7 +361,7 @@
             this.btnRewind.TabIndex = 9;
             this.btnRewind.Text = "<";
             this.btnRewind.UseVisualStyleBackColor = true;
-            this.btnRewind.Click += new System.EventHandler(this.btnRewind_Click);
+            this.btnRewind.Click += new System.EventHandler(this.BtnRewind_Click);
             // 
             // lblColorBefore
             // 
@@ -395,7 +395,7 @@
             this.btnFoundErrors.TabIndex = 11;
             this.btnFoundErrors.Text = "btnFoundErrors";
             this.btnFoundErrors.UseVisualStyleBackColor = true;
-            this.btnFoundErrors.Click += new System.EventHandler(this.btnFoundErrors_Click);
+            this.btnFoundErrors.Click += new System.EventHandler(this.BtnFoundErrors_Click);
             // 
             // btnNextError
             // 
@@ -406,7 +406,7 @@
             this.btnNextError.TabIndex = 9;
             this.btnNextError.Text = ">";
             this.btnNextError.UseVisualStyleBackColor = true;
-            this.btnNextError.Click += new System.EventHandler(this.btnNextError_Click);
+            this.btnNextError.Click += new System.EventHandler(this.BtnNextError_Click);
             // 
             // btnRewindError
             // 
@@ -417,7 +417,7 @@
             this.btnRewindError.TabIndex = 9;
             this.btnRewindError.Text = "<";
             this.btnRewindError.UseVisualStyleBackColor = true;
-            this.btnRewindError.Click += new System.EventHandler(this.btnRewindError_Click);
+            this.btnRewindError.Click += new System.EventHandler(this.BtnRewindError_Click);
             // 
             // button6
             // 
@@ -427,7 +427,7 @@
             this.button6.TabIndex = 3;
             this.button6.Text = "Go to 1st";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.Click += new System.EventHandler(this.First_Click);
             // 
             // UpDownSecondsError
             // 
