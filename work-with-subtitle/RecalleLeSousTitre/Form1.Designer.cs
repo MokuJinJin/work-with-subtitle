@@ -427,7 +427,7 @@
             this.button6.TabIndex = 3;
             this.button6.Text = "Go to 1st";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.First_Click);
+            this.button6.Click += new System.EventHandler(this.GoToFirst_Click);
             // 
             // UpDownSecondsError
             // 
