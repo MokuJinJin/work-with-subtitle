@@ -9,6 +9,7 @@ namespace RecalleLeSousTitre
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Text;
 
     /// <summary>
     /// UI Controler
@@ -109,6 +110,25 @@ namespace RecalleLeSousTitre
         public Tuple<SubtitleLine, SubtitleLine, SubtitleLine> GetLast()
         {
             _index = _subTitles.Count;
+            return GetActual();
+        }
+
+        /// <summary>
+        /// Get a specific line. If the specified number is not valid, return the first line
+        /// </summary>
+        /// <param name="lineNumber">Specific line number</param>
+        /// <returns>Tuple : Item1 is before, Item2 is current, Item3 is after</returns>
+        public Tuple<SubtitleLine, SubtitleLine, SubtitleLine> GetLine(int lineNumber)
+        {
+            if (lineNumber > 0 && lineNumber <= _subTitles.Count)
+            {
+                _index = lineNumber;
+            }
+            else
+            {
+                _index = 1;
+            }
+
             return GetActual();
         }
 
@@ -239,7 +259,7 @@ namespace RecalleLeSousTitre
         public void ReadFile(string filePath)
         {
             _subTitles.Clear();
-            string[] lignes = File.ReadAllLines(filePath);
+            string[] lignes = File.ReadAllLines(filePath, Encoding.UTF8);
             for (int i = 0; i < lignes.Length; i++)
             {
                 int numLigne = 0;
@@ -281,5 +301,14 @@ namespace RecalleLeSousTitre
             }
         }
         #endregion
+
+        /// <summary>
+        /// Get the last line number
+        /// </summary>
+        /// <returns>Last line number</returns>
+        public int GetLastNumber()
+        {
+            return _subTitles.Count;
+        }
     }
 }

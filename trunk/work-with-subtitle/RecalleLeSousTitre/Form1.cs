@@ -57,9 +57,10 @@ namespace RecalleLeSousTitre
         private void Charger_Click(object sender, EventArgs e)
         {
             _controler.ReadFile(file);
-            Tuple<SubtitleLine, SubtitleLine, SubtitleLine> lignes = _controler.GetFirst();
-
-            AfficheLignes(lignes);
+            numericUpDownGoTo.Maximum = _controler.GetLastNumber();
+            lblMaxLine.Text = string.Format("/ {0}", _controler.GetLastNumber());
+            
+            AfficheLignes(_controler.GetFirst());
         }
 
         /// <summary>
@@ -69,8 +70,7 @@ namespace RecalleLeSousTitre
         /// <param name="e">EventArgs</param>
         private void BtnNext_Click(object sender, EventArgs e)
         {
-            Tuple<SubtitleLine, SubtitleLine, SubtitleLine> lignes = _controler.GetNext();
-            AfficheLignes(lignes);
+            AfficheLignes(_controler.GetNext());
         }
 
         /// <summary>
@@ -80,8 +80,7 @@ namespace RecalleLeSousTitre
         /// <param name="e">EventArgs</param>
         private void BtnRewind_Click(object sender, EventArgs e)
         {
-            Tuple<SubtitleLine, SubtitleLine, SubtitleLine> lignes = _controler.GetRewind();
-            AfficheLignes(lignes);
+            AfficheLignes(_controler.GetRewind());
         }
 
         /// <summary>
@@ -91,8 +90,7 @@ namespace RecalleLeSousTitre
         /// <param name="e">EventArgs</param>
         private void BtnFirstError_Click(object sender, EventArgs e)
         {
-            Tuple<SubtitleLine, SubtitleLine, SubtitleLine> lignes = _controler.GetFirstError();
-            AfficheLignes(lignes);
+            AfficheLignes(_controler.GetFirstError());
         }
 
         /// <summary>
@@ -104,22 +102,19 @@ namespace RecalleLeSousTitre
             lblNumeroLigneBefore.Text = lines.Item1.Numero.ToString();
             lblTempsDebutBefore.Text = lines.Item1.StartTime.ToString();
             lblTempsFinBefore.Text = lines.Item1.EndTime.ToString();
-            lblTexteBefore.Text = string.Empty;
-            lines.Item1.Text.ForEach(s => lblTexteBefore.Text += string.Format("{0}{1}", s, Environment.NewLine));
+            richTextBoxBefore.Lines = lines.Item1.Text.ToArray();
             lblColorBefore.BackColor = Utils.ColorErrorBetweenStartAndEndTime(lines.Item1, _controler.SecondsError);
 
             lblNumeroLigne.Text = lines.Item2.Numero.ToString();
             lblTempsDebut.Text = lines.Item2.StartTime.ToString();
             lblTempsFin.Text = lines.Item2.EndTime.ToString();
-            lblTexte.Text = string.Empty; 
-            lines.Item2.Text.ForEach(s => lblTexte.Text += string.Format("{0}{1}", s, Environment.NewLine));
+            richTextBox.Lines = lines.Item2.Text.ToArray();
             lblColor.BackColor = Utils.ColorErrorBetweenStartAndEndTime(lines.Item2, _controler.SecondsError);
 
             lblNumeroLigneAfter.Text = lines.Item3.Numero.ToString();
             lblTempsDebutAfter.Text = lines.Item3.StartTime.ToString();
             lblTempsFinAfter.Text = lines.Item3.EndTime.ToString();
-            lblTexteAfter.Text = string.Empty;
-            lines.Item3.Text.ForEach(s => lblTexteAfter.Text += string.Format("{0}{1}", s, Environment.NewLine));
+            richTextBoxAfter.Lines = lines.Item3.Text.ToArray();
             lblColorAfter.BackColor = Utils.ColorErrorBetweenStartAndEndTime(lines.Item3, _controler.SecondsError);
         }
 
@@ -158,8 +153,7 @@ namespace RecalleLeSousTitre
         /// <param name="e">EventArgs</param>
         private void BtnRewindError_Click(object sender, EventArgs e)
         {
-            Tuple<SubtitleLine, SubtitleLine, SubtitleLine> lignes = _controler.GetRewindError();
-            AfficheLignes(lignes);
+            AfficheLignes(_controler.GetRewindError());
         }
 
         /// <summary>
@@ -169,8 +163,7 @@ namespace RecalleLeSousTitre
         /// <param name="e">EventArgs</param>
         private void BtnNextError_Click(object sender, EventArgs e)
         {
-            Tuple<SubtitleLine, SubtitleLine, SubtitleLine> lignes = _controler.GetNextError();
-            AfficheLignes(lignes);
+            AfficheLignes(_controler.GetNextError());
         }
 
         /// <summary>
@@ -180,8 +173,7 @@ namespace RecalleLeSousTitre
         /// <param name="e">EventArgs</param>
         private void GoToFirst_Click(object sender, EventArgs e)
         {
-            Tuple<SubtitleLine, SubtitleLine, SubtitleLine> lignes = _controler.GetFirst();
-            AfficheLignes(lignes);
+            AfficheLignes(_controler.GetFirst());
         }
 
         /// <summary>
@@ -202,8 +194,17 @@ namespace RecalleLeSousTitre
         /// <param name="e">EventArgs</param>
         private void GoToLast_Click(object sender, EventArgs e)
         {
-            Tuple<SubtitleLine, SubtitleLine, SubtitleLine> lignes = _controler.GetLast();
-            AfficheLignes(lignes);
+            AfficheLignes(_controler.GetLast());
+        }
+
+        /// <summary>
+        /// Got to the selected line number
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">EventArgs</param>
+        private void GoTo_Click(object sender, EventArgs e)
+        {
+            AfficheLignes(_controler.GetLine(int.Parse(numericUpDownGoTo.Value.ToString())));
         }
     }
 }
